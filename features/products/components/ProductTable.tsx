@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 import { useGetProducts } from "@/features/products/api/useGetProducts";
 import { useStore } from "@/store";
 import {
@@ -22,11 +23,23 @@ import { Product } from "@/types";
 export function ProductTable({ searchQuery }: { searchQuery: string }) {
     const { setSelectedProduct, viewMode } = useStore();
     const [page, setPage] = React.useState(0);
+    const containerRef = React.useRef<HTMLDivElement>(null);
     const limit = 10;
 
     React.useEffect(() => {
         setPage(0);
     }, [searchQuery]);
+
+    React.useEffect(() => {
+        if (page > 0 || viewMode === "grid") {
+            const yOffset = -100; // offset for sticky headers if any
+            const element = containerRef.current;
+            if (element) {
+                const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
+                window.scrollTo({ top: y, behavior: 'smooth' });
+            }
+        }
+    }, [page, viewMode]);
 
     const { data, isFetching } = useGetProducts({
         limit,
@@ -59,7 +72,7 @@ export function ProductTable({ searchQuery }: { searchQuery: string }) {
 
 
     return (
-        <div className="flex flex-col gap-5">
+        <div ref={containerRef} className="flex flex-col gap-5">
             {viewMode === "list" ? (
                 <div
                     ref={parentRef}
@@ -196,7 +209,10 @@ export function ProductTable({ searchQuery }: { searchQuery: string }) {
                             <Spinner size="lg" />
                         </div>
                     )}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <div className={cn(
+                        "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 transition-opacity duration-300",
+                        isFetching ? "opacity-50" : "opacity-100"
+                    )}>
                         {allProducts.map((product) => (
                         <div
                             key={product.id}

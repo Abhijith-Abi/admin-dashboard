@@ -46,7 +46,7 @@ export function PaginationControl({
           size="icon"
           aria-label="First page"
           className="hidden h-9 w-9 lg:flex rounded-full bg-white/60 dark:bg-zinc-900/60 backdrop-blur-md shadow-sm border border-zinc-200 dark:border-zinc-800/60 text-zinc-700 dark:text-zinc-300 hover:bg-emerald-50 dark:hover:bg-emerald-950 hover:text-emerald-600 dark:hover:text-emerald-400 cursor-pointer disabled:cursor-not-allowed"
-          onClick={() => setPage(0)}
+          onClick={() => React.startTransition(() => setPage(0))}
           disabled={!canGoPrevious || isFetching}
         >
           <ChevronsLeft className="h-4 w-4" />
@@ -56,7 +56,7 @@ export function PaginationControl({
           size="icon"
           aria-label="Previous page"
           className="h-9 w-9 rounded-full bg-white/60 dark:bg-zinc-900/60 backdrop-blur-md shadow-sm border border-zinc-200 dark:border-zinc-800/60 text-zinc-700 dark:text-zinc-300 hover:bg-emerald-50 dark:hover:bg-emerald-950 hover:text-emerald-600 dark:hover:text-emerald-400 cursor-pointer disabled:cursor-not-allowed"
-          onClick={() => setPage((p) => Math.max(0, p - 1))}
+          onClick={() => React.startTransition(() => setPage((p) => Math.max(0, p - 1)))}
           disabled={!canGoPrevious || isFetching}
         >
           <ChevronLeft className="h-4 w-4" />
@@ -66,7 +66,7 @@ export function PaginationControl({
           size="icon"
           aria-label="Next page"
           className="h-9 w-9 rounded-full bg-white/60 dark:bg-zinc-900/60 backdrop-blur-md shadow-sm border border-zinc-200 dark:border-zinc-800/60 text-zinc-700 dark:text-zinc-300 hover:bg-emerald-50 dark:hover:bg-emerald-950 hover:text-emerald-600 dark:hover:text-emerald-400 cursor-pointer disabled:cursor-not-allowed"
-          onClick={() => setPage((p) => Math.min(totalPages - 1, p + 1))}
+          onClick={() => React.startTransition(() => setPage((p) => Math.min(totalPages - 1, p + 1)))}
           disabled={!canGoNext || isFetching}
         >
           <ChevronRight className="h-4 w-4" />
@@ -76,7 +76,7 @@ export function PaginationControl({
           size="icon"
           aria-label="Last page"
           className="hidden h-9 w-9 lg:flex rounded-full bg-white/60 dark:bg-zinc-900/60 backdrop-blur-md shadow-sm border border-zinc-200 dark:border-zinc-800/60 text-zinc-700 dark:text-zinc-300 hover:bg-emerald-50 dark:hover:bg-emerald-950 hover:text-emerald-600 dark:hover:text-emerald-400 cursor-pointer disabled:cursor-not-allowed"
-          onClick={() => setPage(totalPages - 1)}
+          onClick={() => React.startTransition(() => setPage(totalPages - 1))}
           disabled={!canGoNext || isFetching}
         >
           <ChevronsRight className="h-4 w-4" />

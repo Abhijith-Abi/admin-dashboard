@@ -30,8 +30,21 @@ function TableFallback() {
 }
 
 export default function DashboardPage() {
-    const { activeTab, setActiveTab } = useStore();
+    const { activeTab, setActiveTab, viewMode, setViewMode } = useStore();
     const [activeSearchQuery, setActiveSearchQuery] = React.useState("");
+    const [mounted, setMounted] = React.useState(false);
+
+    React.useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    if (!mounted) {
+        return (
+            <div className="flex items-center justify-center min-h-[60vh]">
+                <Spinner size="xl" />
+            </div>
+        );
+    }
 
     return (
         <div className="flex flex-col gap-8">
@@ -84,11 +97,9 @@ export default function DashboardPage() {
                     {/* View Mode Toggle (List/Grid) */}
                     <div className="flex items-center p-1.5 bg-white/60 dark:bg-zinc-900/60 backdrop-blur-md rounded-2xl border border-zinc-200 dark:border-zinc-800/50 shadow-sm relative z-10 shrink-0">
                         <button
-                            onClick={() =>
-                                useStore.getState().setViewMode("list")
-                            }
+                            onClick={() => setViewMode("list")}
                             className={`cursor-pointer flex items-center justify-center p-2.5 rounded-xl font-medium transition-all duration-300 ${
-                                useStore.getState().viewMode === "list"
+                                viewMode === "list"
                                     ? "bg-white dark:bg-zinc-800 text-emerald-600 dark:text-emerald-400 shadow-sm border border-zinc-200/50 dark:border-zinc-700/50"
                                     : "text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 border border-transparent"
                             }`}
@@ -97,11 +108,9 @@ export default function DashboardPage() {
                             <List className="w-5 h-5" />
                         </button>
                         <button
-                            onClick={() =>
-                                useStore.getState().setViewMode("grid")
-                            }
+                            onClick={() => setViewMode("grid")}
                             className={`cursor-pointer flex items-center justify-center p-2.5 rounded-xl font-medium transition-all duration-300 ${
-                                useStore.getState().viewMode === "grid"
+                                viewMode === "grid"
                                     ? "bg-white dark:bg-zinc-800 text-emerald-600 dark:text-emerald-400 shadow-sm border border-zinc-200/50 dark:border-zinc-700/50"
                                     : "text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 border border-transparent"
                             }`}
