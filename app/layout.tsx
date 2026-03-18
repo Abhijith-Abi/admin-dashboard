@@ -18,6 +18,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://admin-dasboard.abisolutions.online'),
   title: {
     default: 'Admin Dashboard',
     template: '%s | Admin Dashboard',
@@ -35,12 +36,21 @@ export const metadata: Metadata = {
     description: 'Production-ready Admin Dashboard built with Next.js',
     url: '/',
     siteName: 'Admin Dashboard',
+    images: [
+      {
+        url: '/images/opengraph-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Admin Dashboard',
+      },
+    ],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Admin Dashboard',
     description: 'Production-ready Admin Dashboard built with Next.js',
+    images: ['/images/opengraph-image.png'],
   },
 };
 
