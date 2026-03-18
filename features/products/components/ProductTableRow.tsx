@@ -2,7 +2,7 @@ import * as React from "react";
 import Image from "next/image";
 import { TableRow, TableCell } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { Eye, Star } from "lucide-react";
+import { Eye } from "lucide-react";
 import { Product } from "@/types";
 
 interface ProductTableRowProps {
