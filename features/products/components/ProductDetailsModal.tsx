@@ -30,6 +30,7 @@ export function ProductDetailsModal() {
               alt={`${selectedProduct.title} product image`} 
               width={160}
               height={160}
+              priority
               className="h-40 w-40 rounded-2xl border border-zinc-200 dark:border-zinc-800/60 shadow-xl object-contain bg-white dark:bg-zinc-800 p-2"
             />
           </div>

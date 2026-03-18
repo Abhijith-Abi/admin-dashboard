@@ -79,7 +79,7 @@ export function ProductTable({ searchQuery }: { searchQuery: string }) {
                                 <TableHead className="py-4 font-semibold text-zinc-900 dark:text-zinc-50 hidden sm:table-cell">
                                     Category
                                 </TableHead>
-                                <TableHead className="py-4 font-semibold text-zinc-900 dark:text-zinc-50 text-right">
+                                <TableHead className="py-4 font-semibold text-zinc-900 dark:text-zinc-50 text-right hidden sm:table-cell">
                                     Price
                                 </TableHead>
                                 <TableHead className="py-4 font-semibold text-zinc-900 dark:text-zinc-50 text-right hidden md:table-cell">

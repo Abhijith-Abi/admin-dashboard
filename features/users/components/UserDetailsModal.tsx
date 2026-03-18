@@ -36,6 +36,7 @@ export function UserDetailsModal() {
               alt={`${selectedUser.firstName} ${selectedUser.lastName} profile picture`} 
               width={112}
               height={112}
+              priority
               className="h-28 w-28 rounded-full border-4 border-white/60 dark:border-zinc-800/60 shadow-lg object-cover"
             />
           </div>

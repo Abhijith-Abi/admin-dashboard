@@ -32,15 +32,17 @@ export const ProductTableRow = React.memo(React.forwardRef<HTMLTableRowElement, 
                         <span className="font-semibold text-zinc-900 dark:text-zinc-100 line-clamp-1">
                             {product.title}
                         </span>
-                        <span className="text-xs text-zinc-500 dark:text-zinc-400 sm:hidden">
-                            {product.category}
+                        <span className="text-xs text-zinc-500 dark:text-zinc-400 sm:hidden flex items-center gap-1.5 mt-0.5">
+                            <span className="capitalize">{product.category}</span>
+                            <span className="w-1 h-1 rounded-full bg-zinc-300 dark:bg-zinc-600"></span>
+                            <span className="font-medium text-emerald-600 dark:text-emerald-400">${product.price.toFixed(2)}</span>
                         </span>
                     </div>
                 </TableCell>
                 <TableCell className="text-zinc-600 dark:text-zinc-400 py-4 hidden sm:table-cell capitalize">
                     {product.category}
                 </TableCell>
-                <TableCell className="text-zinc-900 dark:text-zinc-100 font-semibold py-4 text-right">
+                <TableCell className="text-zinc-900 dark:text-zinc-100 font-semibold py-4 text-right hidden sm:table-cell">
                     ${product.price.toFixed(2)}
                 </TableCell>
                 <TableCell className="text-zinc-600 dark:text-zinc-400 py-4 text-right hidden md:table-cell">
